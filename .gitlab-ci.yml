@@ -1,0 +1,38 @@
+# .gitlab-ci.yml for mkdocs-material
+#
+# == Reference:
+#   - https://docs.gitlab.com/ee/ci/yaml/
+#   - https://docs.gitlab.com/ee/ci/multi_project_pipelines.html
+#
+stages:
+  - Docker Build
+
+variables:
+  IMAGE_NAME: ${CI_PROJECT_NAME}
+
+# ------------------------------------------------------------------------------
+# == Docker Build
+# ------------------------------------------------------------------------------
+#
+.docker_build:
+  image: docker:20
+  stage: Docker Build
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u ${CI_REGISTRY_USER} -p ${CI_JOB_TOKEN} ${CI_REGISTRY}
+  script:
+    - docker build --pull
+      -t ${IMAGE_NAME}:${IMAGE_TAG}
+      --build-arg python_image=python
+      --build-arg python_image_tag=3.9-slim-buster
+      -f Dockerfile .
+    - docker push ${IMAGE_NAME}:${IMAGE_TAG}
+
+Docker Build:
+  extends: .docker_build
+  variables:
+    IMAGE_TAG: latest
+  only:
+    refs:
+      - master
