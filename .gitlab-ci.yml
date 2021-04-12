@@ -8,7 +8,7 @@ stages:
   - Docker Build
 
 variables:
-  IMAGE_NAME: ${CI_PROJECT_NAME}
+  IMAGE_NAME: registry.gitlab.com/jbeard.dev/docker-images/${CI_PROJECT_NAME}
 
 # ------------------------------------------------------------------------------
 # == Docker Build
