@@ -5,10 +5,13 @@
 #   - https://docs.gitlab.com/ee/ci/multi_project_pipelines.html
 #
 stages:
-  - Docker Build
+  - build
+  - readme
 
 variables:
-  IMAGE_NAME: registry.gitlab.com/jbeard.dev/docker-images/${CI_PROJECT_NAME}
+  CI_REGISTRY_IMAGE: index.docker.io/joshbeard/mkdocs-material
+  CI_REGISTRY: docker.io
+  CI_REGISTRY_USER: joshbeard
 
 # ------------------------------------------------------------------------------
 # == Docker Build
@@ -16,23 +19,41 @@ variables:
 #
 .docker_build:
   image: docker:20
-  stage: Docker Build
+  stage: build
   services:
     - docker:dind
   before_script:
-    - docker login -u ${CI_REGISTRY_USER} -p ${CI_JOB_TOKEN} ${CI_REGISTRY}
+    - docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASS} ${CI_REGISTRY}
   script:
     - docker build --pull
-      -t ${IMAGE_NAME}:${IMAGE_TAG}
+      -t ${CI_REGISTRY_IMAGE}:${IMAGE_TAG}
       --build-arg python_image=python
       --build-arg python_image_tag=3.9-slim-buster
       -f Dockerfile .
-    - docker push ${IMAGE_NAME}:${IMAGE_TAG}
-
-Docker Build:
-  extends: .docker_build
-  variables:
-    IMAGE_TAG: latest
+    - docker push ${CI_REGISTRY_IMAGE}:${IMAGE_TAG}
+    - if [ "$LATEST" == "true" ]; then
+    -   docker tag ${CI_REGISTRY_IMAGE}:${IMAGE_TAG} ${CI_REGISTRY_IMAGE}:latest
+    -   docker push ${CI_REGISTRY_IMAGE}:latest
+    - fi
   only:
     refs:
       - master
+
+build_1.1_6.2:
+  extends: .docker_build
+  variables:
+    IMAGE_TAG: 1.1_6.2
+    LATEST: 'true'
+
+push_readme:
+  image:
+    name: peterevans/dockerhub-description:2
+    entrypoint: ['']
+  stage: readme
+  variables:
+    DOCKERHUB_USERNAME: $CI_REGISTRY_USER
+    DOCKERHUB_REPOSITORY: ${CI_REGISTRY_USER}/mkdocs-material
+    README_FILEPATH: ${CI_PROJECT_DIR}/README.md
+  script:
+    - cd / && /entrypoint.sh
+    - cat action.log
