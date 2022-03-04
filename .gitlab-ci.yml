@@ -30,37 +30,43 @@ variables:
       --build-arg requirements=${REQUIREMENTS_FILE}
       -f ${DOCKERFILE} .
     - docker push ${CI_REGISTRY_IMAGE}:${IMAGE_TAG}
+    - for _tag in $ADDITIONAL_TAGS; do
+    -   docker tag ${CI_REGISTRY_IMAGE}:${IMAGE_TAG} ${CI_REGISTRY_IMAGE}:${_tag}
+    -   docker push ${CI_REGISTRY_IMAGE}:${_tag}
+    - done
   only:
     refs:
       - master
 
-build:
+build_slim:
   extends: .docker_build
   variables:
-    IMAGE_TAG: '8'
+    IMAGE_TAG: '8-slim'
     REQUIREMENTS_FILE: builds/8-requirements.txt
-    DOCKERFILE: Dockerfile
+    DOCKERFILE: Dockerfile-slim
 
 build_alpine:
   extends: .docker_build
   variables:
     IMAGE_TAG: '8-alpine'
+    ADDITIONAL_TAGS: '8'
     REQUIREMENTS_FILE: builds/8-requirements.txt
-    DOCKERFILE: Dockerfile-alpine
+    DOCKERFILE: Dockerfile
 
-build_latest:
+build_latest_slim:
   extends: .docker_build
   variables:
-    IMAGE_TAG: 'latest'
+    IMAGE_TAG: 'latest-slim'
     REQUIREMENTS_FILE: builds/latest-requirements.txt
-    DOCKERFILE: Dockerfile
+    DOCKERFILE: Dockerfile-slim
 
 build_latest_alpine:
   extends: .docker_build
   variables:
-    IMAGE_TAG: 'latest-alpine'
+    IMAGE_TAG: latest-alpine
+    ADDITIONAL_TAGS: latest
     REQUIREMENTS_FILE: builds/latest-requirements.txt
-    DOCKERFILE: Dockerfile-alpine
+    DOCKERFILE: Dockerfile
 
 push_readme:
   image:

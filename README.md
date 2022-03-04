@@ -14,10 +14,10 @@ _3.x-slim_ and _3.x-alpine_ images.
 
 ## Tags
 
-* `8`: Current 8.x release from PyPi from the `python:3.x-slim` image.
-* `8-alpine`: Current 8.x release from PyPi from the `python:3.x-alpine` image.
-* `latest`: Current release from PyPi from the `python:3.x-slim` image.
-* `latest-alpine`: Current release from PyPi from the `python:3.x-alpine` image.
+* `8`, `8-alpine`: Current 8.x release from PyPi from the `python:3.x-alpine` Alpine image.
+* `8-slim`: Current 8.x release from PyPi from the `python:3.x-slim` Debian image.
+* `latest`, `latest-alpine`: Current release from PyPi from the `python:3.x-alpine` Alpine image.
+* `latest-slim`: Current release from PyPi from the `python:3.x-slim` Debian image.
 
 ## Running
 
@@ -29,17 +29,18 @@ Mount a folder with an mkdocs site and `mkdocs.yml` file to `/docs` on the conta
 docker run --rm -it -p 8000:8000 -v ${PWD}:/docs joshbeard/mkdocs-material:8
 ```
 
-* Build documentation
+* Build documentation. This produces static content in a `site/` directory:
 
 ```shell
 docker run --rm -it -v ${PWD}:/docs joshbeard/mkdocs-material:8 build
 ```
 
-Refer to the [example](https://github.com/joshbeard/docker-mkdocs-material/blob/master/example).
+Refer to the [example](https://github.com/joshbeard/docker-mkdocs-material/blob/master/example) to see an example
+using `docker-compose`.
 
 ## Plugins
 
-* Check [`builds/8-requirements.txt`](builds/8-requirements.txt)
+* Check [`builds/8-requirements.txt`](https://github.com/joshbeard/docker-mkdocs-material/blob/master/builds/8-requirements.txt)
 * <https://pypi.org/project/pymdown-env/>
 
 ## Maintainers

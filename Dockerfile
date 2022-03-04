@@ -1,13 +1,10 @@
-ARG source_image=python:3.10-slim
+ARG source_image=python:3.10-alpine
 FROM ${source_image}
 
 ARG requirements=builds/8-requirements.txt
 
 # Git is used for the git-revision plugin
-RUN apt-get update \
-  && apt-get install -y git \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/*
+RUN apk add -U git
 
 COPY ${requirements} /docs/requirements.txt
 
