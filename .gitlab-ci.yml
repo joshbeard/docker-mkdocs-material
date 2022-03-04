@@ -34,9 +34,16 @@ variables:
     -   docker tag ${CI_REGISTRY_IMAGE}:${IMAGE_TAG} ${CI_REGISTRY_IMAGE}:${_tag}
     -   docker push ${CI_REGISTRY_IMAGE}:${_tag}
     - done
-  only:
-    refs:
-      - master
+  rules:
+    - if: '$CI_COMMIT_MESSAGE =~ /\[skip ci\]/'
+      when: manual
+      allow_failure: true
+    - if: '$CI_COMMIT_MESSAGE =~ /\[skip build\]/'
+      when: manual
+      allow_failure: true
+    - if: '$CI_COMMIT_REF_NAME == "master"'
+      when: on_success
+      allow_failure: false
 
 build_slim:
   extends: .docker_build
@@ -80,3 +87,13 @@ push_readme:
   script:
     - cd / && /entrypoint.sh
     - cat action.log
+  rules:
+    - if $CI_COMMIT_MESSAGE =~ /\[skip ci\]/
+      when: manual
+      allow_failure: true
+    - if $CI_COMMIT_MESSAGE =~ /\[no docs\]/
+      when: manual
+      allow_failure: true
+    - if $CI_COMMIT_REF_NAME == "master"
+      when: on_success
+      allow_failure: false
