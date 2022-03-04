@@ -91,15 +91,15 @@ push_readme:
     - cd / && /entrypoint.sh
     - cat action.log
   rules:
-    - if $CI_COMMIT_MESSAGE =~ /\[skip ci\]/
+    - if: $CI_COMMIT_MESSAGE =~ /\[skip ci\]/
       when: manual
       allow_failure: true
-    - if $CI_COMMIT_MESSAGE =~ /\[skip docs\]/
+    - if: $CI_COMMIT_MESSAGE =~ /\[skip docs\]/
       when: manual
       allow_failure: true
     - if: '$SKIP_DOCS == "true"'
       when: manual
       allow_failure: true
-    - if $CI_COMMIT_REF_NAME == "master"
+    - if: $CI_COMMIT_REF_NAME == "master"
       when: on_success
       allow_failure: false
