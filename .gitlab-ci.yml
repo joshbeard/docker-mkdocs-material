@@ -97,7 +97,7 @@ push_readme:
     - if $CI_COMMIT_MESSAGE =~ /\[skip docs\]/
       when: manual
       allow_failure: true
-    - if: '$SKIP_DOCS'
+    - if: '$SKIP_DOCS == "true"'
       when: manual
       allow_failure: true
     - if $CI_COMMIT_REF_NAME == "master"
