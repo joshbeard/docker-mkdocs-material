@@ -27,23 +27,40 @@ variables:
   script:
     - docker build --pull
       -t ${CI_REGISTRY_IMAGE}:${IMAGE_TAG}
-      --build-arg python_image=python
-      --build-arg python_image_tag=3.9-slim-buster
-      -f Dockerfile .
+      --build-arg requirements=${REQUIREMENTS_FILE}
+      -f ${DOCKERFILE} .
     - docker push ${CI_REGISTRY_IMAGE}:${IMAGE_TAG}
-    - if [ "$LATEST" == "true" ]; then
-    -   docker tag ${CI_REGISTRY_IMAGE}:${IMAGE_TAG} ${CI_REGISTRY_IMAGE}:latest
-    -   docker push ${CI_REGISTRY_IMAGE}:latest
-    - fi
   only:
     refs:
       - master
 
-build_1.1_6.2:
+build:
   extends: .docker_build
   variables:
-    IMAGE_TAG: 1.1_6.2
-    LATEST: 'true'
+    IMAGE_TAG: '8'
+    REQUIREMENTS_FILE: builds/8-requirements.txt
+    DOCKERFILE: Dockerfile
+
+build_alpine:
+  extends: .docker_build
+  variables:
+    IMAGE_TAG: '8-alpine'
+    REQUIREMENTS_FILE: builds/8-requirements.txt
+    DOCKERFILE: Dockerfile-alpine
+
+build_latest:
+  extends: .docker_build
+  variables:
+    IMAGE_TAG: 'latest'
+    REQUIREMENTS_FILE: builds/latest-requirements.txt
+    DOCKERFILE: Dockerfile
+
+build_latest_alpine:
+  extends: .docker_build
+  variables:
+    IMAGE_TAG: 'latest-alpine'
+    REQUIREMENTS_FILE: builds/latest-requirements.txt
+    DOCKERFILE: Dockerfile-alpine
 
 push_readme:
   image:

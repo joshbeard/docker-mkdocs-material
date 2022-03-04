@@ -1,0 +1,79 @@
+site_name: 'Example'
+site_url: 'http://localhost:8000'
+site_description: 'Example Documentation'
+copyright: 'Example'
+
+repo_url: 'https://github.com/joshbeard/docker-mkdocs-material'
+repo_name: 'Repository'
+edit_uri: '-/edit/master/docs/'
+
+theme:
+  name: 'material'
+  #logo: 'images/logo.png'
+  #favicon: 'images/favicon-32x32.png'
+
+  # Don't include MkDocs' JavaScript
+  include_search_page: false
+  search_index_only: true
+
+  palette:
+    #primary: teal
+    #accent: deep purple
+    #scheme: default
+    #scheme: preference
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+      primary: teal
+      accent: deep purple
+    - scheme: slate
+      primary: teal
+      accent: yellow
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.instant
+    - navigation.top
+    - navigation.tracking
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - codehilite:
+      guess_lang: false
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+plugins:
+  - awesome-pages
+  - search
+  #- git-revision-date-localized
+  - minify:
+      minify_html: true
+  - snippet:
+        base_path: docs

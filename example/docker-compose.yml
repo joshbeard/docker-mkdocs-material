@@ -1,0 +1,20 @@
+# docker-compose.yml file for local development
+#
+# Usage:
+#   docker-compose up
+#
+# This will start the 'mkdocs serve' process at http://localhost:8000 for
+# local preview and development with live reloading.
+#
+version: '3'
+
+services:
+  mkdocs:
+    image: joshbeard/mkdocs-material:8-alpine
+    build:
+      context: ../
+      dockerfile: Dockerfile-alpine
+    volumes:
+      - .:/docs
+    ports:
+      - 8000:8000

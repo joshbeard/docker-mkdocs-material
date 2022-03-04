@@ -1,10 +1,11 @@
-markdown>=3.2,<4.0
-mkdocs>=1.1,<1.2
-mkdocs-material>=6.2,<6.3
-Pygments>=2.6
-pymdown-extensions>=7.0,<9.0
+mkdocs >=1.1,<1.4
+mkdocs-material >=8.2,<9.0
+Pygments>=2.11
+pymdown-extensions>=9.0,<10.0
 mkdocs-awesome-pages-plugin
 mkdocs-minify-plugin>=0.2
 mkdocs-git-revision-date-localized-plugin
 mkdocs-snippet-plugin
 pymdown-env
+requests
+pytz
