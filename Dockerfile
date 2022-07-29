@@ -1,16 +1,17 @@
-ARG source_image=python:3.10-alpine
-FROM ${source_image}
+ARG source_image=python
+ARG source_image_tag=3.10-alpine
+FROM ${source_image}:${source_image_tag}
 
 ARG requirements=builds/8-requirements.txt
 
 # Git is used for the git-revision plugin
-RUN apk add -U git
+RUN apk --no-cache add git
 
 COPY ${requirements} /docs/requirements.txt
 
 WORKDIR /docs
 
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Expose MkDocs development server port
 EXPOSE 8000
