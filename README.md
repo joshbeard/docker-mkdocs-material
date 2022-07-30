@@ -1,5 +1,7 @@
 # mkdocs-material
 
+[![CodeFactor](https://www.codefactor.io/repository/github/joshbeard/docker-mkdocs-material/badge)](https://www.codefactor.io/repository/github/joshbeard/docker-mkdocs-material)
+
 An image containing [mkdocs](https://www.mkdocs.org/) with the
 [material](https://squidfunk.github.io/mkdocs-material/) theme and plugins.
 
