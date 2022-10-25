@@ -1,4 +1,4 @@
-ARG source_image=python:3.10-slim
+ARG source_image=python:3.11-slim
 FROM ${source_image}
 
 ARG requirements=builds/8-requirements.txt
