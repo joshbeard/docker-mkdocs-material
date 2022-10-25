@@ -1,5 +1,5 @@
 ARG source_image=python
-ARG source_image_tag=3.10-alpine
+ARG source_image_tag=3.11-alpine
 FROM ${source_image}:${source_image_tag}
 
 ARG requirements=builds/8-requirements.txt
