@@ -3,7 +3,7 @@ mkdocs-material
 Pygments==2.13.0
 pymdown-extensions==9.9
 mkdocs-awesome-pages-plugin
-mkdocs-minify-plugin==0.6.1
+mkdocs-minify-plugin==0.6.2
 mkdocs-git-revision-date-localized-plugin
 mkdocs-snippet-plugin
 pymdown-env
