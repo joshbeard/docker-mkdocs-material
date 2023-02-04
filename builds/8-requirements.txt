@@ -1,6 +1,6 @@
 mkdocs ==1.4.2
 mkdocs-material ==8.5.11
-Pygments==2.13.0
+Pygments==2.14.0
 pymdown-extensions==9.9
 mkdocs-awesome-pages-plugin
 mkdocs-minify-plugin==0.6.2
