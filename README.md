@@ -17,11 +17,11 @@ _3.x-slim_ and _3.x-alpine_ images.
 
 ## Tags
 
-* [`8`](https://github.com/joshbeard/docker-mkdocs-material/blob/master/Dockerfile),
-  [`8-alpine`](https://github.com/joshbeard/docker-mkdocs-material/blob/master/Dockerfile):
-  Current 8.x release from PyPi from the `python:3.x-alpine` Alpine image.
-* [`8-slim`](https://github.com/joshbeard/docker-mkdocs-material/blob/master/Dockerfile-slim):
-  Current 8.x release from PyPi from the `python:3.x-slim` Debian image.
+* [`9`](https://github.com/joshbeard/docker-mkdocs-material/blob/master/Dockerfile),
+  [`9-alpine`](https://github.com/joshbeard/docker-mkdocs-material/blob/master/Dockerfile):
+  Current 9.x release from PyPi from the `python:3.x-alpine` Alpine image.
+* [`9-slim`](https://github.com/joshbeard/docker-mkdocs-material/blob/master/Dockerfile-slim):
+  Current 9.x release from PyPi from the `python:3.x-slim` Debian image.
 * [`latest`](https://github.com/joshbeard/docker-mkdocs-material/blob/master/Dockerfile),
   [`latest-alpine`](https://github.com/joshbeard/docker-mkdocs-material/blob/master/Dockerfile):
   Current release from PyPi from the `python:3.x-alpine` Alpine image.
@@ -35,13 +35,13 @@ Mount a folder with an mkdocs site and `mkdocs.yml` file to `/docs` on the conta
 * Start the development server on `:8000`
 
 ```shell
-docker run --rm -it -p 8000:8000 -v ${PWD}:/docs joshbeard/mkdocs-material:8
+docker run --rm -it -p 8000:8000 -v ${PWD}:/docs joshbeard/mkdocs-material:9
 ```
 
 * Build documentation. This produces static content in a `site/` directory:
 
 ```shell
-docker run --rm -it -v ${PWD}:/docs joshbeard/mkdocs-material:8 build
+docker run --rm -it -v ${PWD}:/docs joshbeard/mkdocs-material:9 build
 ```
 
 Refer to the [example](https://github.com/joshbeard/docker-mkdocs-material/tree/master/example) to see an example

@@ -10,10 +10,10 @@ version: '3'
 
 services:
   mkdocs:
-    image: joshbeard/mkdocs-material:8-alpine
+    image: joshbeard/mkdocs-material:9-alpine
     build:
       context: ../
-      dockerfile: Dockerfile-alpine
+      dockerfile: Dockerfile
     volumes:
       - .:/docs
     ports:
