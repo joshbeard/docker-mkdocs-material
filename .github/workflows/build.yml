@@ -17,16 +17,16 @@ jobs:
       matrix:
         include:
           -
-            tags: 'joshbeard/mkdocs-material:8,joshbeard/mkdocs-material:8-alpine'
-            build-args: requirements=builds/8-requirements.txt
+            tags: 'joshbeard/mkdocs-material:9,joshbeard/mkdocs-material:9-alpine'
+            build-args: requirements=builds/9-requirements.txt
             file: Dockerfile
           -
             tags: 'joshbeard/mkdocs-material:latest,joshbeard/mkdocs-material:latest-alpine'
             build-args: requirements=builds/latest-requirements.txt
             file: Dockerfile
           -
-            tags: 'joshbeard/mkdocs-material:8-slim'
-            build-args: requirements=builds/8-requirements.txt
+            tags: 'joshbeard/mkdocs-material:9-slim'
+            build-args: requirements=builds/9-requirements.txt
             file: Dockerfile-slim
           -
             tags: 'joshbeard/mkdocs-material:latest-slim'
