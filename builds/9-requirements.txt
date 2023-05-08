@@ -1,4 +1,4 @@
-Pygments==2.14.0
+Pygments==2.15.1
 mkdocs ==1.4.3
 mkdocs-awesome-pages-plugin==2.8.0
 mkdocs-git-revision-date-localized-plugin
